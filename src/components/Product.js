@@ -9,10 +9,12 @@ const MAX_RATING = 5;
 const MIN_RATING = 1;
 
 function Product({id, title, price, description, category, image}) {
+    console.log(price);
+    console.log(description);
     const dispatch = useDispatch();
-
+    
     const [rating] = useState(
-        Math.floor(Math.random() * (MAX_RATING + 1)) + MIN_RATING
+        Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
     );
 
     const [hasPrime] = useState(Math.random() < 0.5);
@@ -50,8 +52,9 @@ function Product({id, title, price, description, category, image}) {
             <p className="text-xs my-2 line-clamp-2">{description}</p>
 
             <div className="mb-5">
-                <Currency quantity={price} currency="USD"/>
+                <Currency value={price} currency="GBP"/>
             </div>
+            
 
             {hasPrime && (
                 <div className="flex items-center space-x-2 -mt-5">
@@ -61,7 +64,10 @@ function Product({id, title, price, description, category, image}) {
             )}
             <button onClick={addItemToBasket} className="mt-auto button">Add to Basket</button>
         </div>
+
+    
     )
+    
 }
 
 export default Product
